@@ -1,0 +1,8 @@
+tweepy
+pillow
+requests
+apscheduler
+flask
+
+black
+flake8
