@@ -1,2 +1,5 @@
 .idea
 __pycache__
+*.png
+credentials.json
+tweet_ID*.txt
