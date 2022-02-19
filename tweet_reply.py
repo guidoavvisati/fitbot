@@ -33,22 +33,35 @@ def put_last_tweet(logger, file, Id):
     return
 
 
+def load_credentials():
+    try:
+        with open(".\\credentials.json") as cred_file:
+            credentials = json.load(cred_file)[0]
+
+        c_key = credentials["consumer_key"]
+        cs_key = credentials["consumer_secret"]
+        a_token = credentials["access_token"]
+        as_token = credentials["access_token_secret"]
+    except FileNotFoundError:
+        import os
+
+        c_key = os.getenv("CONSUMER_KEY")
+        cs_key = os.getenv("CONSUMER_SECRET")
+        a_token = os.getenv("ACCESS_TOKEN")
+        as_token = os.getenv("ACCESS_TOKEN_SECRET")
+
+    return c_key, cs_key, a_token, as_token
+
+
 # For adding logs in application
 logger = logging.getLogger()
 logging.basicConfig(level=logging.INFO)
 logger.setLevel(logging.INFO)
 
+creds = load_credentials()
 
-with open(".\\credentials.json") as cred_file:
-    credentials = json.load(cred_file)[0]
-
-consumer_key = credentials["consumer_key"]
-consumer_secret_key = credentials["consumer_secret"]
-access_token = credentials["access_token"]
-access_token_secret = credentials["access_token_secret"]
-
-auth = tweepy.OAuthHandler(consumer_key, consumer_secret_key)
-auth.set_access_token(access_token, access_token_secret)
+auth = tweepy.OAuthHandler(creds[:2])
+auth.set_access_token(creds[2:])
 api = tweepy.API(auth)
 # api = tweepy.Client(**credentials)
 
@@ -57,7 +70,7 @@ def reply_to_tweet(file="tweet_ID.txt"):
     last_id = get_last_tweet(file)
     # mentions = api.get_users_mentions(api.get_me().data['id'], user_auth=True).data
     # mentions = filter(lambda tw: tw.id > last_id, mentions)
-    mentions = api.mentions_timeline(since_id=last_id, tweet_mode="extended")
+    mentions = api.mentions_timeline(since_id=last_id, tweet_mode="extended")[1:2]
     if len(mentions) == 0:
         return
 
@@ -78,15 +91,15 @@ def reply_to_tweet(file="tweet_ID.txt"):
 
                 logger.info("liking and replying to tweet")
 
-                api.update_status(
-                    "@" + mention.user.screen_name + " Here's your Quote",
-                    in_reply_to_status_id=mention.id,
-                    media_ids=[media.media_id],
-                )
+                # api.update_status(
+                #     "@" + mention.user.screen_name + " Here's your Quote",
+                #     in_reply_to_status_id=mention.id,
+                #     media_ids=[media.media_id],
+                # )
             except:
                 logger.info("Already replied to {}".format(mention.id))
 
-    put_last_tweet(logger, file, new_id)
+    # put_last_tweet(logger, file, new_id)
 
 
 if __name__ == "__main__":

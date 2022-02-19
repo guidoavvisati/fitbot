@@ -2,4 +2,4 @@
 __pycache__
 *.png
 credentials.json
-tweet_ID*.txt
+tweet_ID_bak.txt
