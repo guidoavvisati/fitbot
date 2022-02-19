@@ -60,8 +60,8 @@ logger.setLevel(logging.INFO)
 
 creds = load_credentials()
 
-auth = tweepy.OAuthHandler(creds[:2])
-auth.set_access_token(creds[2:])
+auth = tweepy.OAuthHandler(*creds[:2])
+auth.set_access_token(*creds[2:])
 api = tweepy.API(auth)
 # api = tweepy.Client(**credentials)
 
