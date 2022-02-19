@@ -5,6 +5,8 @@ Tweet and track your fitness results via fitbot
 - https://auth0.com/blog/how-to-make-a-twitter-bot-in-python-using-tweepy/
 - https://www.digitalocean.com/community/tutorials/how-to-create-a-twitterbot-with-python-3-and-the-tweepy-library
 - https://dev.to/twitterdev/a-comprehensive-guide-for-using-the-twitter-api-v2-using-tweepy-in-python-15d9
+- https://funsizeathlete.medium.com/my-first-twitter-bot-using-python-and-heroku-e3ef83578f58
+- https://emcain.github.io/heroku-twitter-bot/
 
 # References Scheduling
 - https://pypi.org/project/APScheduler/
