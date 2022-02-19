@@ -70,7 +70,7 @@ def reply_to_tweet(file="tweet_ID.txt"):
     last_id = get_last_tweet(file)
     # mentions = api.get_users_mentions(api.get_me().data['id'], user_auth=True).data
     # mentions = filter(lambda tw: tw.id > last_id, mentions)
-    mentions = api.mentions_timeline(since_id=last_id, tweet_mode="extended")[1:2]
+    mentions = api.mentions_timeline(since_id=last_id, tweet_mode="extended")[2:3]
     if len(mentions) == 0:
         return
 
@@ -91,11 +91,11 @@ def reply_to_tweet(file="tweet_ID.txt"):
 
                 logger.info("liking and replying to tweet")
 
-                # api.update_status(
-                #     "@" + mention.user.screen_name + " Here's your Quote",
-                #     in_reply_to_status_id=mention.id,
-                #     media_ids=[media.media_id],
-                # )
+                api.update_status(
+                    "@" + mention.user.screen_name + " Here's your Quote",
+                    in_reply_to_status_id=mention.id,
+                    media_ids=[media.media_id],
+                )
             except:
                 logger.info("Already replied to {}".format(mention.id))
 
