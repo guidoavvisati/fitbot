@@ -70,9 +70,10 @@ def reply_to_tweet(file="tweet_ID.txt"):
     last_id = get_last_tweet(file)
     # mentions = api.get_users_mentions(api.get_me().data['id'], user_auth=True).data
     # mentions = filter(lambda tw: tw.id > last_id, mentions)
-    mentions = api.mentions_timeline(since_id=last_id, tweet_mode="extended")[2:3]
+    mentions = api.mentions_timeline(since_id=last_id, tweet_mode="extended")
     if len(mentions) == 0:
         return
+    mentions = list(filter(lambda tw: tw.id_str == "1494631949599752192", mentions))
 
     new_id = 0
     logger.info("someone mentioned me...")

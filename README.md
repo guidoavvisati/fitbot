@@ -12,3 +12,9 @@ Tweet and track your fitness results via fitbot
 - https://devcenter.heroku.com/articles/clock-processes-python
 - https://devcenter.heroku.com/articles/scheduled-jobs-custom-clock-processes
 - https://aws.amazon.com/premiumsupport/knowledge-center/schedule-elastic-beanstalk-stop-restart/
+
+# Heroku Flow
+- Git deployment `git push heroku master`
+- Start one-off dyno `heroku ps:scale clock=1`
+- Monitoring `heroku logs --tail`
+- Stopping the dyno `heroku ps:stop clock`
