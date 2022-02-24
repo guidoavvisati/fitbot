@@ -20,3 +20,9 @@ Tweet and track your fitness results via fitbot
 - Start one-off dyno `heroku ps:scale clock=1`
 - Monitoring `heroku logs --tail`
 - Stopping the dyno `heroku ps:stop clock`
+
+# Hosting
+- https://botwiki.org/resource/tutorial/how-to-make-a-twitter-bot-the-definitive-guide/
+- https://botwiki.org/resources/hosting-platforms/
+- https://www.therobinlord.com/creating-a-twitter-bot-using-google-cloud-functions/
+- https://blog.andyjiang.com/intermediate-cron-jobs-with-heroku
